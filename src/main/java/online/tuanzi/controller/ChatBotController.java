@@ -1,7 +1,7 @@
 package online.tuanzi.controller;
 
 import io.swagger.annotations.ApiOperation;
-import online.tuanzi.bean.vo.R;
+import online.tuanzi.common.R;
 import online.tuanzi.service.ChatBotService;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;

@@ -12,6 +12,11 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <spirng.boot.version>2.6.6</spirng.boot.version>
+        <mysql.version>8.0.28</mysql.version>
+        <druid.version>1.1.16</druid.version>
+        <mybatis.plus.boot.version>3.4.3.4</mybatis.plus.boot.version>
+        <spring.security.version>5.1.6.RELEASE</spring.security.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
     <dependencies>
         <dependency>
@@ -49,9 +54,67 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!--mybatis plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.boot.version}</version>
+        </dependency>
+        <!--数据库连接器-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <!--mapstruct-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <!--引入netty对websocket的支持-->
+<!--        <dependency>-->
+<!--            <groupId>com.corundumstudio.socketio</groupId>-->
+<!--            <artifactId>netty-socketio</artifactId>-->
+<!--            <version>1.7.18</version>-->
+<!--        </dependency>-->
+        <!--原生websocket-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-websocket</artifactId>-->
+<!--        </dependency>-->
+        <!--引入Spring Security支持-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-web</artifactId>-->
+<!--            <version>${spring.security.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-config</artifactId>-->
+<!--            <version>${spring.security.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
+
     <build>
         <plugins>
+            <!--SpringBoot打包插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

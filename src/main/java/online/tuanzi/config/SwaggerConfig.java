@@ -16,6 +16,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  */
 //@EnableSwagger2 是 swagger2.0版本的注解
 //swagger在3.0之后换成了@EnableOpenApi
+//访问地址：http://localhost:5000/swagger-ui/index.html
 @Configuration
 @EnableOpenApi
 public class SwaggerConfig {

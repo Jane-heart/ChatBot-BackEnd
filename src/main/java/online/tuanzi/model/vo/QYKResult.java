@@ -1,4 +1,4 @@
-package online.tuanzi.bean.vo;
+package online.tuanzi.model.vo;
 
 import lombok.Data;
 

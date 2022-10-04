@@ -1,15 +1,12 @@
 package online.tuanzi.service.impl;
 
-import online.tuanzi.bean.vo.QYKResult;
-import online.tuanzi.bean.vo.R;
+import online.tuanzi.model.vo.QYKResult;
+import online.tuanzi.common.R;
 import online.tuanzi.constant.QYKConstant;
 import online.tuanzi.service.QYKChaBotService;
 import online.tuanzi.utils.HttpClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import javax.annotation.Resource;
 
 /**
  * @ClassName: QYKChaBotServiceImpl

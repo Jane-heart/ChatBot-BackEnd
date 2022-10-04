@@ -12,6 +12,8 @@
 *.iws
 .idea/
 
+# Spring Boot
+src/main/resources/application-dev.yml
 # Maven
 src/test/
 target/

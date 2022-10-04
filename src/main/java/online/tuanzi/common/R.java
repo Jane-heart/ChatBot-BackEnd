@@ -1,11 +1,8 @@
-package online.tuanzi.bean.vo;
+package online.tuanzi.common;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import online.tuanzi.constant.ResultCode;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @ClassName: Result

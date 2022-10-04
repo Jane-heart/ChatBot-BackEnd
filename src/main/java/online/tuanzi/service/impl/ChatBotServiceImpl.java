@@ -1,6 +1,6 @@
 package online.tuanzi.service.impl;
 
-import online.tuanzi.bean.vo.R;
+import online.tuanzi.common.R;
 import online.tuanzi.service.ChatBotService;
 import online.tuanzi.service.QYKChaBotService;
 import org.springframework.stereotype.Service;

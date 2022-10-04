@@ -1,6 +1,6 @@
 package online.tuanzi.service;
 
-import online.tuanzi.bean.vo.R;
+import online.tuanzi.common.R;
 
 /**
  * @ClassName: ChatBotService
