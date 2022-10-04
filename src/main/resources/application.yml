@@ -1,0 +1,10 @@
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+chatbot:
+  baseurl: http://api.qingyunke.com/api.php
+server:
+  port: 5000
