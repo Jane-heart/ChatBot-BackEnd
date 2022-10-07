@@ -8,12 +8,13 @@ import online.tuanzi.exception.UserRegisterException;
 import online.tuanzi.exception.UserUnLoginException;
 import online.tuanzi.model.dto.UserLoginRequest;
 import online.tuanzi.model.dto.UserRegisterRequest;
-import online.tuanzi.model.entity.User;
 import online.tuanzi.model.vo.UserLoginVO;
 import online.tuanzi.service.UserLoginService;
-import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api("用户登录/注册处理")
 @RestController
 @Slf4j
+@CrossOrigin(origins = "*")
 public class UserLoginController {
 
     @Resource
@@ -34,7 +36,7 @@ public class UserLoginController {
 
     @ApiOperation("用户登录")
     @PostMapping("/login")
-    public void login(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) throws UserUnLoginException {
+    public UserLoginVO login(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) throws UserUnLoginException {
         log.info("用户登录信息:"+userLoginRequest);
         //判断用户信息是否为空
         Assert.notNull(userLoginRequest.getPhone(),"手机号不能为空");
@@ -43,8 +45,9 @@ public class UserLoginController {
         //保存请求信息
         RequestHolder.save(request);
         //登录
+        UserLoginVO userLoginVO;
         try {
-            userLoginService.login(userLoginRequest);
+            userLoginVO = userLoginService.login(userLoginRequest);
         } catch (Exception e){
             e.printStackTrace();
             throw new UserUnLoginException("用户登录异常");
@@ -52,6 +55,7 @@ public class UserLoginController {
             //清除当前线程保存的信息
             RequestHolder.remove();
         }
+        return userLoginVO;
     }
 
     @ApiOperation("用户注册")

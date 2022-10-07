@@ -22,7 +22,7 @@ public class UserLoginVO implements Serializable {
     /**
      * 用户id
      */
-    private Object id;
+    private Integer id;
 
     /**
      * 姓名

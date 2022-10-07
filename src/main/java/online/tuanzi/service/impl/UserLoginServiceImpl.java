@@ -1,8 +1,8 @@
 package online.tuanzi.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import online.tuanzi.common.RequestHolder;
+import online.tuanzi.common.WebSocketHolder;
 import online.tuanzi.convertor.UserLoginConvertor;
 import online.tuanzi.model.dto.UserLoginRequest;
 import online.tuanzi.model.dto.UserRegisterRequest;
@@ -28,7 +28,7 @@ public class UserLoginServiceImpl implements UserLoginService {
     private UserService userService;
 
     @Override
-    public void login(UserLoginRequest userLoginRequest) {
+    public UserLoginVO login(UserLoginRequest userLoginRequest) {
         //todo:校验验证码
         Assert.isTrue("aaa".equals(userLoginRequest.getVerificationCode()),"验证码不正确");
 
@@ -38,8 +38,10 @@ public class UserLoginServiceImpl implements UserLoginService {
                 .eq(User::getPassword, userLoginRequest.getPassword()));
         //不存在，抛出异常
         Assert.notNull(user,"用户名不存在");
-        //存在，将信息封装到Request对象返回
-        RequestHolder.getRequestHolder().getSession().setAttribute("user", UserLoginConvertor.INSTANCE.toUserLoginVO(user));
+        //存在，将基本信息返回
+        //登录成功，将其信息写入
+        WebSocketHolder.curUserPool.put(user.getId(),user);
+        return UserLoginConvertor.INSTANCE.toUserLoginVO(user);
     }
 
     @Override

@@ -4,28 +4,29 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 
- * @TableName t_message
+ * @TableName t_group_message
  */
-@TableName(value ="t_message")
+@TableName(value ="t_group_message")
 @Data
-public class Message implements Serializable {
+public class GroupMessage implements Serializable {
     /**
-     * 消息id
+     * 群聊消息id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Object id;
+    private Integer id;
 
     /**
-     * 消息
+     * 群id
      */
-    @TableField(value = "message")
-    private String message;
+    @TableField(value = "group_id")
+    private Integer groupId;
 
     /**
      * 发送者id
@@ -34,10 +35,16 @@ public class Message implements Serializable {
     private Integer senderId;
 
     /**
-     * 接收者id
+     * 内容
      */
-    @TableField(value = "receiver_id")
-    private Integer receiverId;
+    @TableField(value = "content")
+    private String content;
+
+    /**
+     * 内容类型，文本0-图片1-视频2
+     */
+    @TableField(value = "type")
+    private Integer type;
 
     /**
      * 创建时间
@@ -46,7 +53,7 @@ public class Message implements Serializable {
     private Date createTime;
 
     /**
-     * 消息是否删除/撤回
+     * 是否删除，未删除0-删除1
      */
     @TableField(value = "is_delete")
     private Integer isDelete;
@@ -65,11 +72,12 @@ public class Message implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Message other = (Message) that;
+        GroupMessage other = (GroupMessage) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getMessage() == null ? other.getMessage() == null : this.getMessage().equals(other.getMessage()))
+            && (this.getGroupId() == null ? other.getGroupId() == null : this.getGroupId().equals(other.getGroupId()))
             && (this.getSenderId() == null ? other.getSenderId() == null : this.getSenderId().equals(other.getSenderId()))
-            && (this.getReceiverId() == null ? other.getReceiverId() == null : this.getReceiverId().equals(other.getReceiverId()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()));
     }
@@ -79,9 +87,10 @@ public class Message implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getMessage() == null) ? 0 : getMessage().hashCode());
+        result = prime * result + ((getGroupId() == null) ? 0 : getGroupId().hashCode());
         result = prime * result + ((getSenderId() == null) ? 0 : getSenderId().hashCode());
-        result = prime * result + ((getReceiverId() == null) ? 0 : getReceiverId().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getIsDelete() == null) ? 0 : getIsDelete().hashCode());
         return result;
@@ -94,9 +103,10 @@ public class Message implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", message=").append(message);
+        sb.append(", groupId=").append(groupId);
         sb.append(", senderId=").append(senderId);
-        sb.append(", receiverId=").append(receiverId);
+        sb.append(", content=").append(content);
+        sb.append(", type=").append(type);
         sb.append(", createTime=").append(createTime);
         sb.append(", isDelete=").append(isDelete);
         sb.append(", serialVersionUID=").append(serialVersionUID);

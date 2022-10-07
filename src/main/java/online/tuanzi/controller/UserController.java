@@ -2,9 +2,16 @@ package online.tuanzi.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import online.tuanzi.exception.UserNoExistException;
+import online.tuanzi.model.dto.UserFindRequest;
+import online.tuanzi.model.entity.User;
+import online.tuanzi.model.vo.UserFindVO;
+import online.tuanzi.model.vo.UserInfoVO;
+import online.tuanzi.service.UserService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName: UserController
@@ -15,36 +22,47 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("用户控制层类")
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*")
 public class UserController {
 
+    @Resource
+    private UserService userService;
 
-    @GetMapping("/addFriend")
-    @ApiOperation("添加好友")
-    public void addFriend(){
-
+    @GetMapping("/list")
+    @ApiOperation("列表")
+    public List<User> list(){
+        return userService.list();
     }
 
-    @GetMapping("/listFriend")
-    @ApiOperation("展示好友列表")
-    public void listFriend(){
-
+    @GetMapping("/getUserInfo/{userId}")
+    @ApiOperation("获取用户基本信息")
+    public UserInfoVO getUserInfo(@PathVariable("userId") Integer userId){
+        return userService.getUserInfo(userId);
     }
 
-    @GetMapping("/showFriendDetail")
-    @ApiOperation("查看好友信息")
-    public void showFriendDetail(){
+//    @PostMapping("/updateUserInfo")
+//    @ApiOperation("更新用户基本信息")
+//    public String updateUserInfo(){
+//        return "hello";
+//    }
 
+    @PostMapping("/findUser")
+    @ApiOperation("查找用户，根据用户名搜索")
+    public List<UserFindVO> findUser(@RequestBody UserFindRequest userFindRequest) throws UserNoExistException {
+        return userService.findUser(userFindRequest);
     }
 
-    @GetMapping("/showChatDetail")
-    @ApiOperation("查看聊天信息")
-    public void showChatDetail(){
+//    @PostMapping("/findUserById")
+//    @ApiOperation("根据用户id查找用户具体信息")
+//    public String findUserById(String userId){
+//        return "hello";
+//    }
 
-    }
 
-    @GetMapping("hello")
-    @ApiOperation("测试方法")
-    public String test(){
-        return "hello";
-    }
+//
+//    @GetMapping("hello")
+//    @ApiOperation("测试方法")
+//    public String test(){
+//        return "hello";
+//    }
 }

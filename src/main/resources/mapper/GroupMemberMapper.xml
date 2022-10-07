@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.tuanzi.mapper.GroupMemberMapper">
+
+    <resultMap id="BaseResultMap" type="online.tuanzi.model.entity.GroupMember">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="groupId" column="group_id" jdbcType="INTEGER"/>
+            <result property="memberId" column="member_id" jdbcType="INTEGER"/>
+            <result property="isQuit" column="is_quit" jdbcType="TINYINT"/>
+            <result property="inviteTime" column="invite_time" jdbcType="TIMESTAMP"/>
+            <result property="agreeTime" column="agree_time" jdbcType="TIMESTAMP"/>
+            <result property="quitTime" column="quit_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,group_id,member_id,
+        is_quit,invite_time,agree_time,
+        quit_time
+    </sql>
+</mapper>

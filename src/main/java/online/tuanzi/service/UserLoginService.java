@@ -12,7 +12,7 @@ import online.tuanzi.model.vo.UserLoginVO;
  */
 public interface UserLoginService {
     //登录逻辑
-    void login(UserLoginRequest userLoginRequest);
+    UserLoginVO login(UserLoginRequest userLoginRequest);
 
     void register(UserRegisterRequest userRegisterRequest);
 }

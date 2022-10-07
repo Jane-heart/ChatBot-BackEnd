@@ -17,7 +17,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @CreateTime: 2022/10/04 20:41
  * @Description: 正常结果全局统一封装返回
  */
-@RestControllerAdvice
+//仅拦截controller的，防止swagger的结果被拦截
+@RestControllerAdvice(basePackages = {"online.tuanzi.controller"})
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
     @Autowired
     private ObjectMapper objectMapper;

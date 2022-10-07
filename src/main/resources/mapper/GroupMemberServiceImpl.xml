@@ -5,12 +5,15 @@
 <mapper namespace="online.tuanzi.mapper.FriendMapper">
 
     <resultMap id="BaseResultMap" type="online.tuanzi.model.entity.Friend">
-            <id property="id" column="id" jdbcType="OTHER"/>
+            <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="friendId" column="friend_id" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_id,friend_id
+        id,user_id,friend_id,
+        create_time,is_delete
     </sql>
 </mapper>

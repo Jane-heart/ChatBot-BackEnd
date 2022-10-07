@@ -2,7 +2,6 @@ package online.tuanzi.config;
 
 import online.tuanzi.interceptor.UserLoginInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,20 +19,21 @@ public class UserLoginConfig implements WebMvcConfigurer{
     private UserLoginInterceptor userLoginInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //注册UserLoginInterceptor拦截器
-        InterceptorRegistration registration = registry
-                .addInterceptor(userLoginInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns(               //添加不拦截路径
-                        "/login",       //登录路径
-                        "/register",    //注册路径
-                        "/swagger-ui/**",
-                        "/swagger-resources/**",
-                        "/v3/api-docs",
-                        "/chat/**",     //聊天机器人路径
-                        "/**/*.html",   //html静态资源
-                        "/**/*.js",     //js静态资源
-                        "/**/*.css"     //css静态资源
-                );
+        //测试阶段先不拦截
+//        //注册UserLoginInterceptor拦截器
+//        InterceptorRegistration registration = registry
+//                .addInterceptor(userLoginInterceptor)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns(               //添加不拦截路径
+//                        "/login",       //登录路径
+//                        "/register",    //注册路径
+//                        "/swagger-ui/**",
+//                        "/swagger-resources/**",
+//                        "/v3/api-docs",
+//                        "/chat/**",     //聊天机器人路径
+//                        "/**/*.html",   //html静态资源
+//                        "/**/*.js",     //js静态资源
+//                        "/**/*.css"     //css静态资源
+//                );
     }
 }
